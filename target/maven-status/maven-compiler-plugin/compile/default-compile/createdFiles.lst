@@ -1,5 +1,5 @@
-ControllerModel\RowModel.class
-ControllerModel\PivotTableDAO.class
-ControllerModel\PivotTableDAOImpl.class
-ControllerModel\Controller.class
-ControllerModel\Application.class
+testRCS\PivotTableDAO.class
+testRCS\RowModel.class
+testRCS\Controller.class
+testRCS\PivotTableDAOImpl.class
+testRCS\Application.class
