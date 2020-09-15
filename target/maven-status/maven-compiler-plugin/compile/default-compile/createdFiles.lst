@@ -1,0 +1,5 @@
+ControllerModel\RowModel.class
+ControllerModel\PivotTableDAO.class
+ControllerModel\PivotTableDAOImpl.class
+ControllerModel\Controller.class
+ControllerModel\Application.class

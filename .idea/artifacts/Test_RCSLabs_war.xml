@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Test-RCSLabs:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Test-RCSLabs</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Test-RCSLabs.war">
+      <element id="artifact" artifact-name="Test-RCSLabs:war exploded" />
+    </root>
+  </artifact>
+</component>
