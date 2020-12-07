@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Test-RCSLabs.iml" filepath="$PROJECT_DIR$/Test-RCSLabs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RCSLabs.iml" filepath="$PROJECT_DIR$/RCSLabs.iml" />
     </modules>
   </component>
 </project>
