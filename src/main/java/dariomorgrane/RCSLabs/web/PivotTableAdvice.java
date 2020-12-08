@@ -21,7 +21,7 @@ public class PivotTableAdvice {
     @ResponseBody
     @ExceptionHandler(org.springframework.web.bind.MissingServletRequestParameterException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    String MissingRequestParameterExceptionHandler (MissingServletRequestParameterException exception) {
+    String MissingRequestParameterExceptionHandler(MissingServletRequestParameterException exception) {
         return exception.getMessage();
     }
 

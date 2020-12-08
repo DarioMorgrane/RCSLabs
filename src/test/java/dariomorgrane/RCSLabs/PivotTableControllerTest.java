@@ -27,53 +27,53 @@ import java.util.List;
 @ActiveProfiles("test")
 class PivotTableControllerTest implements ApplicationContextAware {
 
-	private ApplicationContext applicationContext;
+    private ApplicationContext applicationContext;
 
-	@LocalServerPort
-	private int port;
+    @LocalServerPort
+    private int port;
 
-	@Autowired
-	private TestRestTemplate restTemplate;
+    @Autowired
+    private TestRestTemplate restTemplate;
 
-	private RowModel expectedRowModel;
+    private RowModel expectedRowModel;
 
-	@Override
-	public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-		this.applicationContext = applicationContext;
-	}
+    @Override
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
+    }
 
-	@BeforeEach
-	void setupTestingDatabase() {
-		JdbcTemplate jdbcTemplate = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
-		DataSource dataSource = applicationContext.getBean("dataSource", DataSource.class);
-		jdbcTemplate.execute("drop table source_data if exists ");
-		jdbcTemplate.execute("create table source_data " +
-				"( a varchar not null, " +
-				"b varchar not null, " +
-				"c varchar not null, " +
-				"d varchar not null, " +
-				"y varchar not null, " +
-				"v bigint not null )");
-		SqlParameterSource parameters= new MapSqlParameterSource()
-				.addValue("a","Налоги на имущество")
-				.addValue("b","Транспортный налог ")
-				.addValue("c","ЮЖНЫЙ ФЕДЕРАЛЬНЫЙ ОКРУГ")
-				.addValue("d","Краснодарский край")
-				.addValue("y","2015")
-				.addValue("v","6391859");
-		expectedRowModel = new RowModel((String) parameters.getValue("b"),(String) parameters.getValue("d"), 6391859);
-		SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("source_data");
-		simpleJdbcInsert.execute(parameters);
-	}
+    @BeforeEach
+    void setupTestingDatabase() {
+        JdbcTemplate jdbcTemplate = applicationContext.getBean("jdbcTemplate", JdbcTemplate.class);
+        DataSource dataSource = applicationContext.getBean("dataSource", DataSource.class);
+        jdbcTemplate.execute("drop table source_data if exists ");
+        jdbcTemplate.execute("create table source_data " +
+                "( a varchar not null, " +
+                "b varchar not null, " +
+                "c varchar not null, " +
+                "d varchar not null, " +
+                "y varchar not null, " +
+                "v bigint not null )");
+        SqlParameterSource parameters = new MapSqlParameterSource()
+                .addValue("a", "Налоги на имущество")
+                .addValue("b", "Транспортный налог ")
+                .addValue("c", "ЮЖНЫЙ ФЕДЕРАЛЬНЫЙ ОКРУГ")
+                .addValue("d", "Краснодарский край")
+                .addValue("y", "2015")
+                .addValue("v", "6391859");
+        expectedRowModel = new RowModel((String) parameters.getValue("b"), (String) parameters.getValue("d"), 6391859);
+        SimpleJdbcInsert simpleJdbcInsert = new SimpleJdbcInsert(dataSource).withTableName("source_data");
+        simpleJdbcInsert.execute(parameters);
+    }
 
-	@Test
-	void test() throws JsonProcessingException {
-		List<RowModel> expectedResponseList = new ArrayList<>();
-		expectedResponseList.add(expectedRowModel);
-		String expectedResponseBody = new ObjectMapper().writeValueAsString(expectedResponseList);
-		String actuallyResponseBody = (restTemplate.getForObject("http://localhost:" + port + "/?row=b&col=d", String.class));
-		Assertions.assertEquals(expectedResponseBody, actuallyResponseBody);
-	}
+    @Test
+    void test() throws JsonProcessingException {
+        List<RowModel> expectedResponseList = new ArrayList<>();
+        expectedResponseList.add(expectedRowModel);
+        String expectedResponseBody = new ObjectMapper().writeValueAsString(expectedResponseList);
+        String actuallyResponseBody = (restTemplate.getForObject("http://localhost:" + port + "/?row=b&col=d", String.class));
+        Assertions.assertEquals(expectedResponseBody, actuallyResponseBody);
+    }
 
 
 }

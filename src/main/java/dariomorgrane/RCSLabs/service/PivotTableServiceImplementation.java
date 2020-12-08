@@ -19,6 +19,6 @@ public class PivotTableServiceImplementation implements PivotTableService {
 
     @Override
     public List<RowModel> getPivotTable(String row, String col) {
-        return dao.findAll(row,col);
+        return dao.findAll(row, col);
     }
 }

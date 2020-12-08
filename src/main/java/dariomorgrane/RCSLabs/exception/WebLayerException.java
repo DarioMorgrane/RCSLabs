@@ -5,4 +5,3 @@ public class WebLayerException extends RuntimeException {
         super(message);
     }
 }
-// todo написать тесты?

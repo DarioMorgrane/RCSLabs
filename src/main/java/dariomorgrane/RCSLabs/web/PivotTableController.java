@@ -30,7 +30,7 @@ public class PivotTableController {
         if (checkIsParameterInvalid(col)) {
             throw new WebLayerException("Unsupported argument for parameter 'col' - " + col);
         }
-        return service.getPivotTable(row,col);
+        return service.getPivotTable(row, col);
     }
 
     private boolean checkIsParameterInvalid(String parameter) {
@@ -38,7 +38,6 @@ public class PivotTableController {
                 !parameter.equals("c") && !parameter.equals("d") &&
                 !parameter.equals("y"));
     }
-
 
 
 }
